@@ -35,7 +35,7 @@ namespace Tracker
 				cfg.ReceiveEndpoint(host, "test_flow", e =>
 				{
 					e.PrefetchCount = 8;
-					//e.UseRetry(Retry.Interval(5, 1000));
+					e.UseRetry(Retry.Interval(5, 1000));
 					e.StateMachineSaga(stateMachine, repository);
 				});
 

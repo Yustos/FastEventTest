@@ -15,7 +15,7 @@ namespace Tracker
 			InstanceState(x => x.CurrentState);
 
 			Event(() => Created, x => x.CorrelateById(c => c.Message.RequestId).SelectId(ctx => ctx.Message.RequestId));
-			Event(() => Completed, x => x.CorrelateById(c => c.Message.CorrelationId));
+			Event(() => Completed, x => x.CorrelateById(c => c.Message.CorrelationId).OnMissingInstance(c => c.Fault()));
 
 			Initially(When(Created)
 				.Then(ctx => Console.WriteLine("Created"))
